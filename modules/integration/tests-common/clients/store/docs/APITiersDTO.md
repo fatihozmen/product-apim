@@ -1,9 +1,7 @@
 
-
 # APITiersDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tierName** | **String** |  |  [optional]

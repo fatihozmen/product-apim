@@ -1,9 +1,7 @@
 
-
 # MonetizationAttributeDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **required** | **Boolean** | Is attribute required  |  [optional]

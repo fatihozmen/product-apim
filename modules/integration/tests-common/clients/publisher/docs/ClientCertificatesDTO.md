@@ -1,10 +1,7 @@
 
-
 # ClientCertificatesDTO
 
-Representation of a list of client certificates
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **Integer** |  |  [optional]

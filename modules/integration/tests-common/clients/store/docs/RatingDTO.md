@@ -1,14 +1,12 @@
 
-
 # RatingDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ratingId** | **String** |  |  [optional] [readonly]
-**apiId** | **String** |  |  [optional] [readonly]
-**ratedBy** | **String** |  |  [optional] [readonly]
+**ratingId** | **String** |  |  [optional]
+**apiId** | **String** |  |  [optional]
+**ratedBy** | **String** |  |  [optional]
 **rating** | **Integer** |  | 
 
 

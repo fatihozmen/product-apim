@@ -1,10 +1,7 @@
 
-
 # WSDLValidationResponseWsdlInfoDTO
 
-Summary of the WSDL including the basic information
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **version** | **String** | WSDL version  |  [optional]

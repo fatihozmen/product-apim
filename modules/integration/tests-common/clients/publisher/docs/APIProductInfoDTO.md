@@ -1,12 +1,10 @@
 
-
 # APIProductInfoDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | UUID of the api product  |  [optional] [readonly]
+**id** | **String** | UUID of the api product  |  [optional]
 **name** | **String** | Name of the API Product |  [optional]
 **context** | **String** |  |  [optional]
 **description** | **String** | A brief description about the API |  [optional]
@@ -16,9 +14,8 @@ Name | Type | Description | Notes
 **securityScheme** | **List&lt;String&gt;** | Types of API security, the current API secured with. It can be either OAuth2 or mutual SSL or both. If it is not set OAuth2 will be set as the security for the current API.  |  [optional]
 
 
-
+<a name="StateEnum"></a>
 ## Enum: StateEnum
-
 Name | Value
 ---- | -----
 CREATED | &quot;CREATED&quot;

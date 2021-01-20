@@ -1,9 +1,7 @@
 
-
 # TenantDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domain** | **String** | tenant domain |  [optional]

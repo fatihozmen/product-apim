@@ -1,9 +1,7 @@
 
-
 # GraphQLCustomComplexityInfoDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** | The type found within the schema of the API  | 

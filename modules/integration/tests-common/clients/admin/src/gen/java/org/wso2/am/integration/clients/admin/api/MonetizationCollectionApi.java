@@ -1,12 +1,12 @@
 /*
  * WSO2 API Manager - Admin
- * This document specifies a **RESTful API** for WSO2 **API Manager** - **Admin Portal**. Please see [full OpenAPI Specification](https://raw.githubusercontent.com/wso2/carbon-apimgt/v6.7.206/components/apimgt/org.wso2.carbon.apimgt.rest.api.admin.v1/src/main/resources/admin-api.yaml) of the API which is written using [OAS 3.0](http://swagger.io/) specification.  # Authentication Our REST APIs are protected using OAuth2 and access control is achieved through scopes. Before you start invoking the the API you need to obtain an access token with the required scopes. This guide will walk you through the steps that you will need to follow to obtain an access token. First you need to obtain the consumer key/secret key pair by calling the dynamic client registration (DCR) endpoint. You can add your preferred grant types in the payload. A sample payload is shown below. ```   {   \"callbackUrl\":\"www.google.lk\",   \"clientName\":\"rest_api_admin\",   \"owner\":\"admin\",   \"grantType\":\"client_credentials password refresh_token\",   \"saasApp\":true   } ``` Create a file (payload.json) with the above sample payload, and use the cURL shown bellow to invoke the DCR endpoint. Authorization header of this should contain the base64 encoded admin username and password. **Format of the request** ```   curl -X POST -H \"Authorization: Basic Base64(admin_username:admin_password)\" -H \"Content-Type: application/json\"   \\ -d @payload.json https://<host>:<servlet_port>/client-registration/v0.17/register ``` **Sample request** ```   curl -X POST -H \"Authorization: Basic YWRtaW46YWRtaW4=\" -H \"Content-Type: application/json\"   \\ -d @payload.json https://localhost:9443/client-registration/v0.17/register ``` Following is a sample response after invoking the above curl. ``` { \"clientId\": \"fOCi4vNJ59PpHucC2CAYfYuADdMa\", \"clientName\": \"rest_api_admin\", \"callBackURL\": \"www.google.lk\", \"clientSecret\": \"a4FwHlq0iCIKVs2MPIIDnepZnYMa\", \"isSaasApplication\": true, \"appOwner\": \"admin\", \"jsonString\": \"{\\\"grant_types\\\":\\\"client_credentials password refresh_token\\\",\\\"redirect_uris\\\":\\\"www.google.lk\\\",\\\"client_name\\\":\\\"rest_api_admin\\\"}\", \"jsonAppAttribute\": \"{}\", \"tokenType\": null } ``` Next you must use the above client id and secret to obtain the access token. We will be using the password grant type for this, you can use any grant type you desire. You also need to add the proper **scope** when getting the access token. All possible scopes for Admin REST API can be viewed in **OAuth2 Security** section of this document and scope for each resource is given in **authorizations** section of resource documentation. Following is the format of the request if you are using the password grant type. ``` curl -k -d \"grant_type=password&username=<admin_username>&password=<admin_passowrd>&scope=<scopes seperated by space>\" \\ -H \"Authorization: Basic base64(cliet_id:client_secret)\" \\ https://<host>:<gateway_port>/token ``` **Sample request** ``` curl https://localhost:8243/token -k \\ -H \"Authorization: Basic Zk9DaTR2Tko1OVBwSHVjQzJDQVlmWXVBRGRNYTphNEZ3SGxxMGlDSUtWczJNUElJRG5lcFpuWU1h\" \\ -d \"grant_type=password&username=admin&password=admin&scope=apim:admin apim:tier_view\" ``` Shown below is a sample response to the above request. ``` { \"access_token\": \"e79bda48-3406-3178-acce-f6e4dbdcbb12\", \"refresh_token\": \"a757795d-e69f-38b8-bd85-9aded677a97c\", \"scope\": \"apim:admin apim:tier_view\", \"token_type\": \"Bearer\", \"expires_in\": 3600 } ``` Now you have a valid access token, which you can use to invoke an API. Navigate through the API descriptions to find the required API, obtain an access token as described above and invoke the API with the authentication header. If you use a different authentication mechanism, this process may change.  # Try out in Postman If you want to try-out the embedded postman collection with \"Run in Postman\" option, please follow the guidelines listed below. * All of the OAuth2 secured endpoints have been configured with an Authorization Bearer header with a parameterized access token. Before invoking any REST API resource make sure you run the `Register DCR Application` and `Generate Access Token` requests to fetch an access token with all required scopes. * Make sure you have an API Manager instance up and running. * Update the `basepath` parameter to match the hostname and port of the APIM instance.  [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f5ac2ca9fb22afef6ed6) 
+ * This document specifies a **RESTful API** for WSO2 **API Manager** - Admin Portal. Please see [full swagger definition](https://raw.githubusercontent.com/wso2/carbon-apimgt/v6.5.176/components/apimgt/org.wso2.carbon.apimgt.rest.api.admin/src/main/resources/admin-api.yaml) of the API which is written using [swagger 2.0](http://swagger.io/) specification. 
  *
- * The version of the OpenAPI document: v1.2
+ * OpenAPI spec version: v1.2
  * Contact: architecture@wso2.com
  *
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
+ * NOTE: This class is auto generated by the swagger code generator program.
+ * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
 
@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import org.wso2.am.integration.clients.admin.api.dto.ErrorDTO;
 import org.wso2.am.integration.clients.admin.api.dto.MonetizationUsagePublishInfoDTO;
 import org.wso2.am.integration.clients.admin.api.dto.PublishStatusDTO;
 
@@ -38,39 +37,32 @@ import java.util.List;
 import java.util.Map;
 
 public class MonetizationCollectionApi {
-    private ApiClient localVarApiClient;
+    private ApiClient apiClient;
 
     public MonetizationCollectionApi() {
         this(Configuration.getDefaultApiClient());
     }
 
     public MonetizationCollectionApi(ApiClient apiClient) {
-        this.localVarApiClient = apiClient;
+        this.apiClient = apiClient;
     }
 
     public ApiClient getApiClient() {
-        return localVarApiClient;
+        return apiClient;
     }
 
     public void setApiClient(ApiClient apiClient) {
-        this.localVarApiClient = apiClient;
+        this.apiClient = apiClient;
     }
 
     /**
      * Build call for monetizationPublishUsagePost
-     * @param _callback Callback for upload/download progress
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Usage records successfully published. </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Request is sucessfully accepted for processing. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found. The specified resource does not exist. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-     </table>
      */
-    public okhttp3.Call monetizationPublishUsagePostCall(final ApiCallback _callback) throws ApiException {
+    public com.squareup.okhttp.Call monetizationPublishUsagePostCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -78,109 +70,112 @@ public class MonetizationCollectionApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json"
         };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+            "application/json"
         };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
         String[] localVarAuthNames = new String[] { "OAuth2Security" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call monetizationPublishUsagePostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private com.squareup.okhttp.Call monetizationPublishUsagePostValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        okhttp3.Call localVarCall = monetizationPublishUsagePostCall(_callback);
-        return localVarCall;
+        com.squareup.okhttp.Call call = monetizationPublishUsagePostCall(progressListener, progressRequestListener);
+        return call;
 
     }
 
     /**
      * Publish Usage Records
-     * Publish usage records of monetized APIs 
+     * Publish Usage Records of Monetized APIs 
      * @return PublishStatusDTO
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Usage records successfully published. </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Request is sucessfully accepted for processing. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found. The specified resource does not exist. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-     </table>
      */
     public PublishStatusDTO monetizationPublishUsagePost() throws ApiException {
-        ApiResponse<PublishStatusDTO> localVarResp = monetizationPublishUsagePostWithHttpInfo();
-        return localVarResp.getData();
+        ApiResponse<PublishStatusDTO> resp = monetizationPublishUsagePostWithHttpInfo();
+        return resp.getData();
     }
 
     /**
      * Publish Usage Records
-     * Publish usage records of monetized APIs 
+     * Publish Usage Records of Monetized APIs 
      * @return ApiResponse&lt;PublishStatusDTO&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Usage records successfully published. </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Request is sucessfully accepted for processing. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found. The specified resource does not exist. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-     </table>
      */
     public ApiResponse<PublishStatusDTO> monetizationPublishUsagePostWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = monetizationPublishUsagePostValidateBeforeCall(null);
+        com.squareup.okhttp.Call call = monetizationPublishUsagePostValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<PublishStatusDTO>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Publish Usage Records (asynchronously)
-     * Publish usage records of monetized APIs 
-     * @param _callback The callback to be executed when the API call finishes
+     * Publish Usage Records of Monetized APIs 
+     * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Usage records successfully published. </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Request is sucessfully accepted for processing. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found. The specified resource does not exist. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-     </table>
      */
-    public okhttp3.Call monetizationPublishUsagePostAsync(final ApiCallback<PublishStatusDTO> _callback) throws ApiException {
+    public com.squareup.okhttp.Call monetizationPublishUsagePostAsync(final ApiCallback<PublishStatusDTO> callback) throws ApiException {
 
-        okhttp3.Call localVarCall = monetizationPublishUsagePostValidateBeforeCall(_callback);
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = monetizationPublishUsagePostValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PublishStatusDTO>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
     }
     /**
      * Build call for monetizationPublishUsageStatusGet
-     * @param _callback Callback for upload/download progress
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK. Status returned  </td><td>  -  </td></tr>
-     </table>
      */
-    public okhttp3.Call monetizationPublishUsageStatusGetCall(final ApiCallback _callback) throws ApiException {
+    public com.squareup.okhttp.Call monetizationPublishUsageStatusGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -188,86 +183,102 @@ public class MonetizationCollectionApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json"
         };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+            "application/json"
         };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
         String[] localVarAuthNames = new String[] { "OAuth2Security" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call monetizationPublishUsageStatusGetValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private com.squareup.okhttp.Call monetizationPublishUsageStatusGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        okhttp3.Call localVarCall = monetizationPublishUsageStatusGetCall(_callback);
-        return localVarCall;
+        com.squareup.okhttp.Call call = monetizationPublishUsageStatusGetCall(progressListener, progressRequestListener);
+        return call;
 
     }
 
     /**
-     * Get the Status of Monetization Usage Publisher
-     * Get the status of monetization usage publisher 
+     * Get the status of Monetization usage publisher
+     * Get the status of Monetization usage publisher 
      * @return MonetizationUsagePublishInfoDTO
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK. Status returned  </td><td>  -  </td></tr>
-     </table>
      */
     public MonetizationUsagePublishInfoDTO monetizationPublishUsageStatusGet() throws ApiException {
-        ApiResponse<MonetizationUsagePublishInfoDTO> localVarResp = monetizationPublishUsageStatusGetWithHttpInfo();
-        return localVarResp.getData();
+        ApiResponse<MonetizationUsagePublishInfoDTO> resp = monetizationPublishUsageStatusGetWithHttpInfo();
+        return resp.getData();
     }
 
     /**
-     * Get the Status of Monetization Usage Publisher
-     * Get the status of monetization usage publisher 
+     * Get the status of Monetization usage publisher
+     * Get the status of Monetization usage publisher 
      * @return ApiResponse&lt;MonetizationUsagePublishInfoDTO&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK. Status returned  </td><td>  -  </td></tr>
-     </table>
      */
     public ApiResponse<MonetizationUsagePublishInfoDTO> monetizationPublishUsageStatusGetWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = monetizationPublishUsageStatusGetValidateBeforeCall(null);
+        com.squareup.okhttp.Call call = monetizationPublishUsageStatusGetValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<MonetizationUsagePublishInfoDTO>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get the Status of Monetization Usage Publisher (asynchronously)
-     * Get the status of monetization usage publisher 
-     * @param _callback The callback to be executed when the API call finishes
+     * Get the status of Monetization usage publisher (asynchronously)
+     * Get the status of Monetization usage publisher 
+     * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK. Status returned  </td><td>  -  </td></tr>
-     </table>
      */
-    public okhttp3.Call monetizationPublishUsageStatusGetAsync(final ApiCallback<MonetizationUsagePublishInfoDTO> _callback) throws ApiException {
+    public com.squareup.okhttp.Call monetizationPublishUsageStatusGetAsync(final ApiCallback<MonetizationUsagePublishInfoDTO> callback) throws ApiException {
 
-        okhttp3.Call localVarCall = monetizationPublishUsageStatusGetValidateBeforeCall(_callback);
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = monetizationPublishUsageStatusGetValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<MonetizationUsagePublishInfoDTO>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
     }
 }

@@ -1,9 +1,7 @@
 
-
 # AlertConfigDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **configurationId** | **String** | The alert config subscription id. |  [optional]

@@ -4,48 +4,39 @@ All URIs are relative to *https://apis.wso2.com/api/am/store/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**changeUserPassword**](UsersApi.md#changeUserPassword) | **POST** /me/change-password | Change the Password of the user
+[**changeUserPassword**](UsersApi.md#changeUserPassword) | **POST** /me/change-password | Change the password of the user
 
 
 <a name="changeUserPassword"></a>
 # **changeUserPassword**
-> changeUserPassword(currentAndNewPasswordsDTO)
+> changeUserPassword(body)
 
-Change the Password of the user
+Change the password of the user
 
-Using this operation, logged-in user can change their password. 
+Using this operation, logged-in user can change his/her password. 
 
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.store.api.ApiClient;
-import org.wso2.am.integration.clients.store.api.ApiException;
-import org.wso2.am.integration.clients.store.api.Configuration;
-import org.wso2.am.integration.clients.store.api.auth.*;
-import org.wso2.am.integration.clients.store.api.models.*;
-import org.wso2.am.integration.clients.store.api.v1.UsersApi;
+//import org.wso2.am.integration.clients.store.api.ApiClient;
+//import org.wso2.am.integration.clients.store.api.ApiException;
+//import org.wso2.am.integration.clients.store.api.Configuration;
+//import org.wso2.am.integration.clients.store.api.auth.*;
+//import org.wso2.am.integration.clients.store.api.v1.UsersApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/store/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    UsersApi apiInstance = new UsersApi(defaultClient);
-    CurrentAndNewPasswordsDTO currentAndNewPasswordsDTO = new CurrentAndNewPasswordsDTO(); // CurrentAndNewPasswordsDTO | Current and new password of the user 
-    try {
-      apiInstance.changeUserPassword(currentAndNewPasswordsDTO);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UsersApi#changeUserPassword");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+UsersApi apiInstance = new UsersApi();
+CurrentAndNewPasswordsDTO body = new CurrentAndNewPasswordsDTO(); // CurrentAndNewPasswordsDTO | Current and new password of the user 
+try {
+    apiInstance.changeUserPassword(body);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UsersApi#changeUserPassword");
+    e.printStackTrace();
 }
 ```
 
@@ -53,7 +44,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currentAndNewPasswordsDTO** | [**CurrentAndNewPasswordsDTO**](CurrentAndNewPasswordsDTO.md)| Current and new password of the user  |
+ **body** | [**CurrentAndNewPasswordsDTO**](CurrentAndNewPasswordsDTO.md)| Current and new password of the user  |
 
 ### Return type
 
@@ -67,10 +58,4 @@ null (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK. User password changed successfully |  -  |
-**400** | Bad Request. Invalid request or validation error. |  -  |
 

@@ -1,13 +1,10 @@
 
-
 # APIDeploymentClusterInfoDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**clusterName** | **String** | Name of the cluster  | 
-**clusterDisplayName** | **String** | Display name of the cluster  |  [optional]
+**clusterName** | **String** | name of the cluster | 
 **ingressURL** | **String** | ingress URL | 
 
 

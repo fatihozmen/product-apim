@@ -1,9 +1,7 @@
 
-
 # ScopeListDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **Integer** | Number of results returned.  |  [optional]

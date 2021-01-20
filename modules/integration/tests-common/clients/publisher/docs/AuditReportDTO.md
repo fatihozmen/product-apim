@@ -1,9 +1,7 @@
 
-
 # AuditReportDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **report** | **String** | The API Security Audit Report  |  [optional]

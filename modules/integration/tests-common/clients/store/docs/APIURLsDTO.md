@@ -1,9 +1,7 @@
 
-
 # APIURLsDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **http** | **String** | HTTP environment URL |  [optional]

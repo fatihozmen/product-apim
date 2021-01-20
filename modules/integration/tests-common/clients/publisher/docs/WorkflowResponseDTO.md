@@ -1,9 +1,7 @@
 
-
 # WorkflowResponseDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **workflowStatus** | [**WorkflowStatusEnum**](#WorkflowStatusEnum) | This attribute declares whether this workflow task is approved or rejected.  | 
@@ -11,9 +9,8 @@ Name | Type | Description | Notes
 **lifecycleState** | [**LifecycleStateDTO**](LifecycleStateDTO.md) |  |  [optional]
 
 
-
+<a name="WorkflowStatusEnum"></a>
 ## Enum: WorkflowStatusEnum
-
 Name | Value
 ---- | -----
 CREATED | &quot;CREATED&quot;

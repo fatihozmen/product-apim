@@ -1,9 +1,7 @@
 
-
 # ApplicationKeyMappingRequestDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **consumerKey** | **String** | Consumer key of the application | 
@@ -12,9 +10,8 @@ Name | Type | Description | Notes
 **keyType** | [**KeyTypeEnum**](#KeyTypeEnum) |  | 
 
 
-
+<a name="KeyTypeEnum"></a>
 ## Enum: KeyTypeEnum
-
 Name | Value
 ---- | -----
 PRODUCTION | &quot;PRODUCTION&quot;

@@ -1,9 +1,7 @@
 
-
 # EndpointConfigDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **url** | **String** | Service url of the endpoint  |  [optional]

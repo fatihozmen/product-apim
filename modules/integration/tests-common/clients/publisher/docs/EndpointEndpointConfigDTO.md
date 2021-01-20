@@ -1,18 +1,15 @@
 
-
 # EndpointEndpointConfigDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **endpointType** | [**EndpointTypeEnum**](#EndpointTypeEnum) |  |  [optional]
 **list** | [**List&lt;EndpointConfigDTO&gt;**](EndpointConfigDTO.md) |  |  [optional]
 
 
-
+<a name="EndpointTypeEnum"></a>
 ## Enum: EndpointTypeEnum
-
 Name | Value
 ---- | -----
 SINGLE | &quot;SINGLE&quot;

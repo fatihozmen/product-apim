@@ -57,7 +57,6 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -334,18 +333,14 @@ public class ExternalIDPJWTTestCase extends APIManagerLifecycleBaseTest {
                 .setAvailableGrantTypes(Arrays.asList("client_credentials", "password", "implicit", "refresh_token"));
         TokenValidationDTO tokenValidationDTO = new TokenValidationDTO();
         tokenValidationDTO.setEnable(false);
-        List<TokenValidationDTO> tokenValidationDTOList = new ArrayList<>();
-        tokenValidationDTOList.add(tokenValidationDTO);
-        keyManagerDTO.setTokenValidation(tokenValidationDTOList);
+        keyManagerDTO.addTokenValidationItem(tokenValidationDTO);
         keyManagerDTO.setEnableSelfValidationJWT(true);
-        List<ClaimMappingEntryDTO> claimMappingEntryDTOS = new ArrayList<>();
-        claimMappingEntryDTOS.add(new ClaimMappingEntryDTO().remoteClaim("http://idp.org/claims/givenname")
+        keyManagerDTO.addClaimMappingItem(new ClaimMappingEntryDTO().remoteClaim("http://idp.org/claims/givenname")
                 .localClaim("http://wso2.org/claims/givenname"));
-        claimMappingEntryDTOS.add(new ClaimMappingEntryDTO().remoteClaim("http://idp.org/claims/firstname")
+        keyManagerDTO.addClaimMappingItem(new ClaimMappingEntryDTO().remoteClaim("http://idp.org/claims/firstname")
                 .localClaim("http://wso2.org/claims/firstname"));
-        claimMappingEntryDTOS.add(new ClaimMappingEntryDTO().remoteClaim("http://idp.org/claims/email")
+        keyManagerDTO.addClaimMappingItem(new ClaimMappingEntryDTO().remoteClaim("http://idp.org/claims/email")
                 .localClaim("http://wso2.org/claims/email"));
-        keyManagerDTO.setClaimMapping(claimMappingEntryDTOS);
         org.wso2.am.integration.clients.admin.ApiResponse<KeyManagerDTO>
                 keyManagerDTOApiResponse = restAPIAdmin.addKeyManager(keyManagerDTO);
         KeyManagerDTO retrievedData = keyManagerDTOApiResponse.getData();
@@ -371,18 +366,14 @@ public class ExternalIDPJWTTestCase extends APIManagerLifecycleBaseTest {
                 .setAvailableGrantTypes(Arrays.asList("client_credentials", "password", "implicit", "refresh_token"));
         TokenValidationDTO tokenValidationDTO = new TokenValidationDTO();
         tokenValidationDTO.setEnable(false);
-        List<TokenValidationDTO> tokenValidationDTOList = new ArrayList<>();
-        tokenValidationDTOList.add(tokenValidationDTO);
-        keyManagerDTO.setTokenValidation(tokenValidationDTOList);
+        keyManagerDTO.addTokenValidationItem(tokenValidationDTO);
         keyManagerDTO.setEnableSelfValidationJWT(true);
-        List<ClaimMappingEntryDTO> claimMappingEntryDTOS = new ArrayList<>();
-        claimMappingEntryDTOS.add(new ClaimMappingEntryDTO().remoteClaim("http://idp2.org/claims/givenname")
+        keyManagerDTO.addClaimMappingItem(new ClaimMappingEntryDTO().remoteClaim("http://idp2.org/claims/givenname")
                 .localClaim("http://wso2.org/claims/givenname"));
-        claimMappingEntryDTOS.add(new ClaimMappingEntryDTO().remoteClaim("http://idp2.org/claims/firstname")
+        keyManagerDTO.addClaimMappingItem(new ClaimMappingEntryDTO().remoteClaim("http://idp2.org/claims/firstname")
                 .localClaim("http://wso2.org/claims/firstname"));
-        claimMappingEntryDTOS.add(new ClaimMappingEntryDTO().remoteClaim("http://idp2.org/claims/email")
+        keyManagerDTO.addClaimMappingItem(new ClaimMappingEntryDTO().remoteClaim("http://idp2.org/claims/email")
                 .localClaim("http://wso2.org/claims/email"));
-        keyManagerDTO.setClaimMapping(claimMappingEntryDTOS);
         org.wso2.am.integration.clients.admin.ApiResponse<KeyManagerDTO>
                 keyManagerDTOApiResponse = restAPIAdmin.addKeyManager(keyManagerDTO);
         KeyManagerDTO retrievedData = keyManagerDTOApiResponse.getData();

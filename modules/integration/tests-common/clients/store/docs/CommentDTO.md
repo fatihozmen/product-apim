@@ -1,16 +1,13 @@
 
-
 # CommentDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  |  [optional] [readonly]
+**id** | **String** |  |  [optional]
 **content** | **String** |  | 
-**createdTime** | **String** |  |  [optional] [readonly]
-**createdBy** | **String** |  |  [optional] [readonly]
-**commenterInfo** | [**CommenterInfoDTO**](CommenterInfoDTO.md) |  |  [optional]
+**createdTime** | **String** |  |  [optional]
+**createdBy** | **String** |  |  [optional]
 
 
 

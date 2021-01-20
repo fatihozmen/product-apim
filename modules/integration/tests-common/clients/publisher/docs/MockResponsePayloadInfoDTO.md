@@ -1,9 +1,7 @@
 
-
 # MockResponsePayloadInfoDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **path** | **String** | path of the resource |  [optional]

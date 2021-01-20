@@ -1,9 +1,7 @@
 
-
 # DocumentDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **documentId** | **String** |  |  [optional]
@@ -15,9 +13,8 @@ Name | Type | Description | Notes
 **otherTypeName** | **String** |  |  [optional]
 
 
-
+<a name="TypeEnum"></a>
 ## Enum: TypeEnum
-
 Name | Value
 ---- | -----
 HOWTO | &quot;HOWTO&quot;
@@ -29,9 +26,8 @@ SWAGGER_DOC | &quot;SWAGGER_DOC&quot;
 OTHER | &quot;OTHER&quot;
 
 
-
+<a name="SourceTypeEnum"></a>
 ## Enum: SourceTypeEnum
-
 Name | Value
 ---- | -----
 INLINE | &quot;INLINE&quot;

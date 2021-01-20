@@ -99,7 +99,7 @@ public class APIM514CreateAnAPIWithoutProvidingMandatoryFieldsTestCase extends
             APIDTO apiDto = createAndPublishAPI(apiCreationRequestBean, restAPIPublisher, false);
             assertFalse(StringUtils.isNotEmpty(apiDto.getId()), "Api is not created without proving API Name");
         } catch (ApiException e) {
-            assertEquals(e.getCode(), HttpStatus.SC_BAD_REQUEST, "Required Parameter name is not provided " );
+            assertEquals(e.getCode(), HttpStatus.SC_INTERNAL_SERVER_ERROR, "Internal Server Error " );
         }
 //        Need to uncomment this after resolving https://github.com/wso2/product-apim/issues/6172
 //        JSONObject apiResponse = new JSONObject(apiId);
@@ -122,7 +122,8 @@ public class APIM514CreateAnAPIWithoutProvidingMandatoryFieldsTestCase extends
             APIDTO apiDto = createAndPublishAPI(apiCreationRequestBean, restAPIPublisher, false);
             assertFalse(StringUtils.isNotEmpty(apiDto.getId()), "Api is not created without proving Context");
         } catch (ApiException e) {
-            assertEquals(e.getCode(), HttpStatus.SC_BAD_REQUEST, "Required Parameter context is not provided " );
+            assertEquals(e.getCode(), HttpStatus.SC_INTERNAL_SERVER_ERROR,
+                    "Internal Server Error " );
         }
 //        Need to uncomment this after resolving https://github.com/wso2/product-apim/issues/6172
 //        JSONObject apiResponse = new JSONObject(apiId);
@@ -149,7 +150,7 @@ public class APIM514CreateAnAPIWithoutProvidingMandatoryFieldsTestCase extends
             APIDTO apiDto = createAndPublishAPI(apiCreationRequestBean, restAPIPublisher, false);
             assertFalse(StringUtils.isNotEmpty(apiDto.getId()), "Api is not created without proving Version");
         } catch (ApiException e) {
-            assertEquals(e.getCode(), HttpStatus.SC_BAD_REQUEST, "Required Parameter version is not provided " );
+            assertEquals(e.getCode(), HttpStatus.SC_INTERNAL_SERVER_ERROR, "Internal Server Error " );
         }
 //        Need to uncomment this after resolving https://github.com/wso2/product-apim/issues/6172
 //        JSONObject apiResponse = new JSONObject(apiId);

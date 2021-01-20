@@ -1,9 +1,7 @@
 
-
 # MonetizationInfoDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billingType** | [**BillingTypeEnum**](#BillingTypeEnum) |  |  [optional]
@@ -13,9 +11,8 @@ Name | Type | Description | Notes
 **currencyType** | **String** |  |  [optional]
 
 
-
+<a name="BillingTypeEnum"></a>
 ## Enum: BillingTypeEnum
-
 Name | Value
 ---- | -----
 FIXEDPRICE | &quot;fixedPrice&quot;

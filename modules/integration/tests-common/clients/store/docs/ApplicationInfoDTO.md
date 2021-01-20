@@ -1,9 +1,7 @@
 
-
 # ApplicationInfoDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **applicationId** | **String** |  |  [optional]
@@ -13,7 +11,7 @@ Name | Type | Description | Notes
 **status** | **String** |  |  [optional]
 **groups** | **List&lt;String&gt;** |  |  [optional]
 **subscriptionCount** | **Integer** |  |  [optional]
-**attributes** | [**Object**](.md) |  |  [optional]
+**attributes** | **Object** |  |  [optional]
 **owner** | **String** |  |  [optional]
 
 

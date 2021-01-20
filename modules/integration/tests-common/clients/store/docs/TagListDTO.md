@@ -1,9 +1,7 @@
 
-
 # TagListDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **Integer** | Number of Tags returned.  |  [optional]

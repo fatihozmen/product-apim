@@ -1,9 +1,7 @@
 
-
 # SecurityAuditAttributeDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **isGlobal** | **Boolean** |  |  [optional]

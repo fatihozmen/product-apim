@@ -46,6 +46,8 @@ public class AdminApiTestHelper {
                 "Policy display name does not match with the expected display name");
         Assert.assertEquals(actualPolicy.getDescription(), expectedPolicy.getDescription(),
                 "Policy description does not match with the expected description");
+        Assert.assertEquals(actualPolicy.isIsDeployed(), expectedPolicy.isIsDeployed(),
+                "Policy deployed status does not match with the expected deployed status");
         boolean isDefaultLimitEqual = actualPolicy.getDefaultLimit().equals(expectedPolicy.getDefaultLimit());
         Assert.assertTrue(isDefaultLimitEqual, "Policy default limit does not match with the expected default limit");
     }
@@ -67,6 +69,8 @@ public class AdminApiTestHelper {
                 "Policy display name does not match with the expected display name");
         Assert.assertEquals(actualPolicy.getDescription(), expectedPolicy.getDescription(),
                 "Policy description does not match with the expected description");
+        Assert.assertEquals(actualPolicy.isIsDeployed(), expectedPolicy.isIsDeployed(),
+                "Policy deployed status does not match with the expected deployed status");
         boolean isDefaultLimitEqual = actualPolicy.getDefaultLimit().equals(expectedPolicy.getDefaultLimit());
         Assert.assertTrue(isDefaultLimitEqual, "Policy default limit does not match with the expected default limit");
         Assert.assertEquals(actualPolicy.getGraphQLMaxComplexity(), expectedPolicy.getGraphQLMaxComplexity(),
@@ -99,6 +103,8 @@ public class AdminApiTestHelper {
                 "Policy name does not match with the expected name");
         Assert.assertEquals(actualPolicy.getDescription(), expectedPolicy.getDescription(),
                 "Policy description does not match with the expected description");
+        Assert.assertEquals(actualPolicy.isIsDeployed(), expectedPolicy.isIsDeployed(),
+                "Policy description does not match with the expected description");
         Assert.assertEquals(actualPolicy.getSiddhiQuery(), expectedPolicy.getSiddhiQuery(),
                 "Policy siddhi query does not match with the expected siddhi query");
         Assert.assertEquals(actualPolicy.getKeyTemplate(), expectedPolicy.getKeyTemplate(),
@@ -122,6 +128,8 @@ public class AdminApiTestHelper {
                 "Policy display name does not match with the expected display name");
         Assert.assertEquals(actualPolicy.getDescription(), expectedPolicy.getDescription(),
                 "Policy description does not match with the expected description");
+        Assert.assertEquals(actualPolicy.isIsDeployed(), expectedPolicy.isIsDeployed(),
+                "Policy deployed status does not match with the expected deployed status");
         boolean isDefaultLimitEqual = actualPolicy.getDefaultLimit().equals(expectedPolicy.getDefaultLimit());
         Assert.assertTrue(isDefaultLimitEqual, "Policy default limit does not match with the expected default limit");
         boolean isConditionGroupsEqual = actualPolicy.getConditionalGroups()

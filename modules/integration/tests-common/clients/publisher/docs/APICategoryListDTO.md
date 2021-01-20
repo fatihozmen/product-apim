@@ -1,9 +1,7 @@
 
-
 # APICategoryListDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **Integer** | Number of API categories returned.  |  [optional]

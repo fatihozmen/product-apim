@@ -4,48 +4,39 @@ All URIs are relative to *https://apis.wso2.com/api/am/store/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**recommendationsGet**](RecommendationsApi.md#recommendationsGet) | **GET** /recommendations | Give API Recommendations for a User
+[**recommendationsGet**](RecommendationsApi.md#recommendationsGet) | **GET** /recommendations | Give API recommendations for a user
 
 
 <a name="recommendationsGet"></a>
 # **recommendationsGet**
 > RecommendationsDTO recommendationsGet()
 
-Give API Recommendations for a User
+Give API recommendations for a user
 
 This API can be used to get recommended APIs for a user who logs into the API store
 
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.store.api.ApiClient;
-import org.wso2.am.integration.clients.store.api.ApiException;
-import org.wso2.am.integration.clients.store.api.Configuration;
-import org.wso2.am.integration.clients.store.api.auth.*;
-import org.wso2.am.integration.clients.store.api.models.*;
-import org.wso2.am.integration.clients.store.api.v1.RecommendationsApi;
+//import org.wso2.am.integration.clients.store.api.ApiClient;
+//import org.wso2.am.integration.clients.store.api.ApiException;
+//import org.wso2.am.integration.clients.store.api.Configuration;
+//import org.wso2.am.integration.clients.store.api.auth.*;
+//import org.wso2.am.integration.clients.store.api.v1.RecommendationsApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/store/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    RecommendationsApi apiInstance = new RecommendationsApi(defaultClient);
-    try {
-      RecommendationsDTO result = apiInstance.recommendationsGet();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling RecommendationsApi#recommendationsGet");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+RecommendationsApi apiInstance = new RecommendationsApi();
+try {
+    RecommendationsDTO result = apiInstance.recommendationsGet();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RecommendationsApi#recommendationsGet");
+    e.printStackTrace();
 }
 ```
 
@@ -62,12 +53,6 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK. Requested recommendations are returned  |  * ETag - Entity Tag of the response resource. Used by caches, or in conditional requests  <br>  |
-**404** | Not Found. The specified resource does not exist. |  -  |
 

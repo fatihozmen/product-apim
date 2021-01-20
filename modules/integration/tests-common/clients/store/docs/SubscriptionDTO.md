@@ -1,12 +1,10 @@
 
-
 # SubscriptionDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subscriptionId** | **String** | The UUID of the subscription |  [optional] [readonly]
+**subscriptionId** | **String** | The UUID of the subscription |  [optional]
 **applicationId** | **String** | The UUID of the application | 
 **apiId** | **String** | The unique identifier of the API. |  [optional]
 **apiInfo** | [**APIInfoDTO**](APIInfoDTO.md) |  |  [optional]
@@ -14,12 +12,11 @@ Name | Type | Description | Notes
 **throttlingPolicy** | **String** |  | 
 **requestedThrottlingPolicy** | **String** |  |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) |  |  [optional]
-**redirectionParams** | **String** | A url and other parameters the subscriber can be redirected. |  [optional] [readonly]
+**redirectionParams** | **String** | A url and other parameters the subscriber can be redirected. |  [optional]
 
 
-
+<a name="StatusEnum"></a>
 ## Enum: StatusEnum
-
 Name | Value
 ---- | -----
 BLOCKED | &quot;BLOCKED&quot;

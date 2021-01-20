@@ -4,55 +4,46 @@ All URIs are relative to *https://apis.wso2.com/api/am/publisher/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addSharedScope**](ScopesApi.md#addSharedScope) | **POST** /scopes | Add a New Shared Scope
+[**addSharedScope**](ScopesApi.md#addSharedScope) | **POST** /scopes | Add a new Shared Scope
 [**deleteSharedScope**](ScopesApi.md#deleteSharedScope) | **DELETE** /scopes/{scopeId} | Delete a Shared Scope
 [**getSharedScope**](ScopesApi.md#getSharedScope) | **GET** /scopes/{scopeId} | Get a Shared Scope by Scope Id
 [**getSharedScopeUsages**](ScopesApi.md#getSharedScopeUsages) | **GET** /scopes/{scopeId}/usage | Get usages of a Shared Scope by Scope Id
-[**getSharedScopes**](ScopesApi.md#getSharedScopes) | **GET** /scopes | Get All Available Shared Scopes
+[**getSharedScopes**](ScopesApi.md#getSharedScopes) | **GET** /scopes | Get all available Shared Scopes
 [**updateSharedScope**](ScopesApi.md#updateSharedScope) | **PUT** /scopes/{scopeId} | Update a Shared Scope
-[**validateScope**](ScopesApi.md#validateScope) | **HEAD** /scopes/{scopeId} | Check Given Scope Name already Exists
+[**validateScope**](ScopesApi.md#validateScope) | **HEAD** /scopes/{scopeId} | Check given scope name is already exist
 
 
 <a name="addSharedScope"></a>
 # **addSharedScope**
-> ScopeDTO addSharedScope(scopeDTO)
+> ScopeDTO addSharedScope(body)
 
-Add a New Shared Scope
+Add a new Shared Scope
 
 This operation can be used to add a new Shared Scope. 
 
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.publisher.api.ApiClient;
-import org.wso2.am.integration.clients.publisher.api.ApiException;
-import org.wso2.am.integration.clients.publisher.api.Configuration;
-import org.wso2.am.integration.clients.publisher.api.auth.*;
-import org.wso2.am.integration.clients.publisher.api.models.*;
-import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/publisher/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    ScopesApi apiInstance = new ScopesApi(defaultClient);
-    ScopeDTO scopeDTO = new ScopeDTO(); // ScopeDTO | Scope object that needs to be added
-    try {
-      ScopeDTO result = apiInstance.addSharedScope(scopeDTO);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScopesApi#addSharedScope");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ScopesApi apiInstance = new ScopesApi();
+ScopeDTO body = new ScopeDTO(); // ScopeDTO | Scope object that needs to be added 
+try {
+    ScopeDTO result = apiInstance.addSharedScope(body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ScopesApi#addSharedScope");
+    e.printStackTrace();
 }
 ```
 
@@ -60,7 +51,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **scopeDTO** | [**ScopeDTO**](ScopeDTO.md)| Scope object that needs to be added |
+ **body** | [**ScopeDTO**](ScopeDTO.md)| Scope object that needs to be added  |
 
 ### Return type
 
@@ -75,13 +66,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Created. Successful response with the newly created Scope object as an entity in the body.  |  * Content-Type - The content type of the body.  <br>  |
-**400** | Bad Request. Invalid request or validation error. |  -  |
-**415** | Unsupported Media Type. The entity of the request was not in a supported format. |  -  |
-
 <a name="deleteSharedScope"></a>
 # **deleteSharedScope**
 > deleteSharedScope(scopeId)
@@ -93,34 +77,25 @@ This operation can be used to delete a Shared Scope proving the Id of the scope.
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.publisher.api.ApiClient;
-import org.wso2.am.integration.clients.publisher.api.ApiException;
-import org.wso2.am.integration.clients.publisher.api.Configuration;
-import org.wso2.am.integration.clients.publisher.api.auth.*;
-import org.wso2.am.integration.clients.publisher.api.models.*;
-import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/publisher/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    ScopesApi apiInstance = new ScopesApi(defaultClient);
-    String scopeId = "scopeId_example"; // String | Scope Id consisting the UUID of the shared scope 
-    try {
-      apiInstance.deleteSharedScope(scopeId);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScopesApi#deleteSharedScope");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ScopesApi apiInstance = new ScopesApi();
+String scopeId = "scopeId_example"; // String | Scope Id consisting the UUID of the shared scope 
+try {
+    apiInstance.deleteSharedScope(scopeId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ScopesApi#deleteSharedScope");
+    e.printStackTrace();
 }
 ```
 
@@ -140,14 +115,8 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK. Resource successfully deleted.  |  -  |
-**404** | Not Found. The specified resource does not exist. |  -  |
 
 <a name="getSharedScope"></a>
 # **getSharedScope**
@@ -160,35 +129,26 @@ This operation can be used to retrieve details of a Shared Scope by a given scop
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.publisher.api.ApiClient;
-import org.wso2.am.integration.clients.publisher.api.ApiException;
-import org.wso2.am.integration.clients.publisher.api.Configuration;
-import org.wso2.am.integration.clients.publisher.api.auth.*;
-import org.wso2.am.integration.clients.publisher.api.models.*;
-import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/publisher/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    ScopesApi apiInstance = new ScopesApi(defaultClient);
-    String scopeId = "scopeId_example"; // String | Scope Id consisting the UUID of the shared scope 
-    try {
-      ScopeDTO result = apiInstance.getSharedScope(scopeId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScopesApi#getSharedScope");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ScopesApi apiInstance = new ScopesApi();
+String scopeId = "scopeId_example"; // String | Scope Id consisting the UUID of the shared scope 
+try {
+    ScopeDTO result = apiInstance.getSharedScope(scopeId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ScopesApi#getSharedScope");
+    e.printStackTrace();
 }
 ```
 
@@ -208,14 +168,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK. Requested Shared Scope is returned.  |  * Content-Type - The content type of the body.  <br>  |
-**404** | Not Found. The specified resource does not exist. |  -  |
 
 <a name="getSharedScopeUsages"></a>
 # **getSharedScopeUsages**
@@ -228,35 +182,26 @@ This operation can be used to retrieve usages of a Shared Scope by a given scope
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.publisher.api.ApiClient;
-import org.wso2.am.integration.clients.publisher.api.ApiException;
-import org.wso2.am.integration.clients.publisher.api.Configuration;
-import org.wso2.am.integration.clients.publisher.api.auth.*;
-import org.wso2.am.integration.clients.publisher.api.models.*;
-import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/publisher/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    ScopesApi apiInstance = new ScopesApi(defaultClient);
-    String scopeId = "scopeId_example"; // String | Scope Id consisting the UUID of the shared scope 
-    try {
-      SharedScopeUsageDTO result = apiInstance.getSharedScopeUsages(scopeId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScopesApi#getSharedScopeUsages");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ScopesApi apiInstance = new ScopesApi();
+String scopeId = "scopeId_example"; // String | Scope Id consisting the UUID of the shared scope 
+try {
+    SharedScopeUsageDTO result = apiInstance.getSharedScopeUsages(scopeId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ScopesApi#getSharedScopeUsages");
+    e.printStackTrace();
 }
 ```
 
@@ -276,56 +221,41 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK. Usages of the shared scope is returned.  |  * Content-Type - The content type of the body.  <br>  |
-**404** | Not Found. The specified resource does not exist. |  -  |
 
 <a name="getSharedScopes"></a>
 # **getSharedScopes**
 > ScopeListDTO getSharedScopes(limit, offset)
 
-Get All Available Shared Scopes
+Get all available Shared Scopes
 
 This operation can be used to get all the available Shared Scopes. 
 
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.publisher.api.ApiClient;
-import org.wso2.am.integration.clients.publisher.api.ApiException;
-import org.wso2.am.integration.clients.publisher.api.Configuration;
-import org.wso2.am.integration.clients.publisher.api.auth.*;
-import org.wso2.am.integration.clients.publisher.api.models.*;
-import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/publisher/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    ScopesApi apiInstance = new ScopesApi(defaultClient);
-    Integer limit = 25; // Integer | Maximum size of resource array to return. 
-    Integer offset = 0; // Integer | Starting point within the complete list of items qualified. 
-    try {
-      ScopeListDTO result = apiInstance.getSharedScopes(limit, offset);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScopesApi#getSharedScopes");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ScopesApi apiInstance = new ScopesApi();
+Integer limit = 25; // Integer | Maximum size of resource array to return. 
+Integer offset = 0; // Integer | Starting point within the complete list of items qualified. 
+try {
+    ScopeListDTO result = apiInstance.getSharedScopes(limit, offset);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ScopesApi#getSharedScopes");
+    e.printStackTrace();
 }
 ```
 
@@ -346,18 +276,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK. Shared Scope list is returned.  |  * Content-Type - The content type of the body.  <br>  |
-**500** | Internal Server Error. |  -  |
 
 <a name="updateSharedScope"></a>
 # **updateSharedScope**
-> ScopeDTO updateSharedScope(scopeId, scopeDTO)
+> ScopeDTO updateSharedScope(scopeId, body)
 
 Update a Shared Scope
 
@@ -366,36 +290,27 @@ This operation can be used to update a Shared Scope by a given scope Id.
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.publisher.api.ApiClient;
-import org.wso2.am.integration.clients.publisher.api.ApiException;
-import org.wso2.am.integration.clients.publisher.api.Configuration;
-import org.wso2.am.integration.clients.publisher.api.auth.*;
-import org.wso2.am.integration.clients.publisher.api.models.*;
-import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/publisher/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    ScopesApi apiInstance = new ScopesApi(defaultClient);
-    String scopeId = "scopeId_example"; // String | Scope Id consisting the UUID of the shared scope 
-    ScopeDTO scopeDTO = new ScopeDTO(); // ScopeDTO | Scope object that needs to be updated
-    try {
-      ScopeDTO result = apiInstance.updateSharedScope(scopeId, scopeDTO);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScopesApi#updateSharedScope");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ScopesApi apiInstance = new ScopesApi();
+String scopeId = "scopeId_example"; // String | Scope Id consisting the UUID of the shared scope 
+ScopeDTO body = new ScopeDTO(); // ScopeDTO | Scope object that needs to be updated 
+try {
+    ScopeDTO result = apiInstance.updateSharedScope(scopeId, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ScopesApi#updateSharedScope");
+    e.printStackTrace();
 }
 ```
 
@@ -404,7 +319,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scopeId** | **String**| Scope Id consisting the UUID of the shared scope  |
- **scopeDTO** | [**ScopeDTO**](ScopeDTO.md)| Scope object that needs to be updated |
+ **body** | [**ScopeDTO**](ScopeDTO.md)| Scope object that needs to be updated  |
 
 ### Return type
 
@@ -419,52 +334,36 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK. Successful response with updated Scope object  |  * Content-Type - The content type of the body.  <br>  |
-**400** | Bad Request. Invalid request or validation error. |  -  |
-**404** | Not Found. The specified resource does not exist. |  -  |
-
 <a name="validateScope"></a>
 # **validateScope**
 > validateScope(scopeId)
 
-Check Given Scope Name already Exists
+Check given scope name is already exist
 
 Using this operation, user can check a given scope name exists or not. 
 
 ### Example
 ```java
 // Import classes:
-import org.wso2.am.integration.clients.publisher.api.ApiClient;
-import org.wso2.am.integration.clients.publisher.api.ApiException;
-import org.wso2.am.integration.clients.publisher.api.Configuration;
-import org.wso2.am.integration.clients.publisher.api.auth.*;
-import org.wso2.am.integration.clients.publisher.api.models.*;
-import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
+//import org.wso2.am.integration.clients.publisher.api.ApiClient;
+//import org.wso2.am.integration.clients.publisher.api.ApiException;
+//import org.wso2.am.integration.clients.publisher.api.Configuration;
+//import org.wso2.am.integration.clients.publisher.api.auth.*;
+//import org.wso2.am.integration.clients.publisher.api.v1.ScopesApi;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://apis.wso2.com/api/am/publisher/v1");
-    
-    // Configure OAuth2 access token for authorization: OAuth2Security
-    OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
-    OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-    ScopesApi apiInstance = new ScopesApi(defaultClient);
-    String scopeId = "scopeId_example"; // String | Scope name 
-    try {
-      apiInstance.validateScope(scopeId);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ScopesApi#validateScope");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+// Configure OAuth2 access token for authorization: OAuth2Security
+OAuth OAuth2Security = (OAuth) defaultClient.getAuthentication("OAuth2Security");
+OAuth2Security.setAccessToken("YOUR ACCESS TOKEN");
+
+ScopesApi apiInstance = new ScopesApi();
+String scopeId = "scopeId_example"; // String | Scope name 
+try {
+    apiInstance.validateScope(scopeId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ScopesApi#validateScope");
+    e.printStackTrace();
 }
 ```
 
@@ -484,12 +383,6 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK. Requested scope name exists. |  -  |
-**404** | Not Found. The specified resource does not exist. |  -  |
 

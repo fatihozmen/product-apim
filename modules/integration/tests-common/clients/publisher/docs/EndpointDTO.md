@@ -1,9 +1,7 @@
 
-
 # EndpointDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | UUID of the Endpoint entry  |  [optional]

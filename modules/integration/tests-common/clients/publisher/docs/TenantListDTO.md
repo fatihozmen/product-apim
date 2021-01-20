@@ -1,9 +1,7 @@
 
-
 # TenantListDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **Integer** | Number of tenants returned.  |  [optional]

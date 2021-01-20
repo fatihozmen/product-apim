@@ -1,9 +1,7 @@
 
-
 # ApplicationListDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **Integer** | Number of applications returned.  |  [optional]

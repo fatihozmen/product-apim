@@ -1,9 +1,7 @@
 
-
 # ThreatProtectionPolicyDTO
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **String** | Policy ID |  [optional]
